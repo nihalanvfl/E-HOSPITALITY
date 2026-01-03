@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Appointment Slot</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f5f7fa;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .appointment-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
+      transition: transform 0.2s ease-in-out;
+    }
+    .appointment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    h3 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="appointment-card">
+    <h3>🗓️ Create Appointment Slot</h3>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label class="form-label">Doctor</label>
+        <select name="doctor" class="form-select" required>
+          <option value="">-- Select Doctor --</option>
+          {% for d in doctors %}
+            <option value="{{ d.id }}">{{ d.user.username }} ({{ d.specialization }})</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Location Name</label>
+        <input type="text" name="location_name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input type="date" name="date" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Time</label>
+        <input type="time" name="time" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Fee</label>
+        <input type="number" step="0.01" name="fee" class="form-control" min="0" required>
+      </div>
+
+
+      <div class="mb-3">
+        <label class="form-label">Number of Slots</label>
+        <input type="number" name="total_slots" class="form-control" min="1" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Create Appointment</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Appointments</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f5f7fa; padding: 40px; }
+    .page-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .table th, .table td { vertical-align: middle; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="page-card">
+    <h3 class="mb-4 text-center">📅 My Appointments</h3>
+
+    {% if appointments %}
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Total Slots</th>
+            <th>Booked</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for ap in appointments %}
+          <tr>
+            <td>{{ ap.date }}</td>
+            <td>{{ ap.time }}</td>
+            <td>{{ ap.location_name }}</td>
+            <td>{{ ap.total_slots }}</td>
+            <td>{{ ap.patients.count }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No appointments scheduled.</p>
+    {% endif %}
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Education Info</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+  background: #f5f7fa;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.education-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 550px;
+  width: 100%;
+  transition: transform 0.2s ease-in-out;
+}
+.education-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+}
+h3 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+</style>
+</head>
+<body>
+<div class="education-card">
+  <h3>📚 Create Education Info</h3>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input type="text" name="title" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Summary</label>
+      <textarea name="summary" class="form-control" rows="2"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Content</label>
+      <textarea name="content" class="form-control" rows="5" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Resources Link (optional)</label>
+      <input type="url" name="resources_link" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Create Education Info</button>
+  </form>
+</div>
+</body>
+</html>
